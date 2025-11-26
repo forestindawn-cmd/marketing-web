@@ -78,31 +78,37 @@ body {
 }
 
 .auth-form .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .auth-form label {
     display: block;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--charcoal);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .auth-form input {
     width: 100%;
-    padding: 14px 16px;
-    border: 1px solid var(--border-gray);
-    border-radius: 10px;
-    font-size: 15px;
+    padding: 18px 20px;
+    border: 2px solid var(--border-gray);
+    border-radius: 12px;
+    font-size: 16px;
     font-family: inherit;
     transition: all 0.2s ease;
+    background: var(--off-white);
 }
 
 .auth-form input:focus {
     outline: none;
     border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.1);
+    background: var(--white);
+    box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.15);
+}
+
+.auth-form input::placeholder {
+    color: var(--medium-gray);
 }
 
 .btn {
@@ -439,6 +445,33 @@ body {
 
 .day-card.completed .day-title {
     color: var(--medium-gray);
+}
+
+/* Locked Day Card */
+.day-card.locked {
+    opacity: 0.5;
+    background: var(--light-gray);
+}
+
+.day-card.locked .day-header {
+    cursor: not-allowed;
+}
+
+.day-card.locked .day-checkbox {
+    pointer-events: none;
+}
+
+.day-card.locked::after {
+    content: '🔒';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+}
+
+.day-card {
+    position: relative;
 }
 
 .day-header {

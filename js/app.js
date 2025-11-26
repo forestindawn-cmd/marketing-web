@@ -198,12 +198,26 @@ function applyProgress() {
     
     checkboxes.forEach((cb, index) => {
         const dayCard = cb.closest('.day-card');
+        
+        // 완료 상태 적용
         if (completedDays.includes(index)) {
             cb.checked = true;
             dayCard.classList.add('completed');
         } else {
             cb.checked = false;
             dayCard.classList.remove('completed');
+        }
+        
+        // 잠금 상태 적용 (이전 Day 완료해야 열림)
+        if (index === 0) {
+            // Day 1은 항상 열림
+            dayCard.classList.remove('locked');
+        } else if (completedDays.includes(index - 1)) {
+            // 이전 Day 완료했으면 열림
+            dayCard.classList.remove('locked');
+        } else {
+            // 이전 Day 미완료면 잠금
+            dayCard.classList.add('locked');
         }
     });
     
@@ -228,6 +242,13 @@ function updateProgressBar() {
 
 function toggleDay(header) {
     const card = header.closest('.day-card');
+    
+    // 잠긴 카드는 열 수 없음
+    if (card.classList.contains('locked')) {
+        alert('이전 Day를 먼저 완료해주세요! ✏️');
+        return;
+    }
+    
     const wasActive = card.classList.contains('active');
     
     // 다른 카드 닫기
