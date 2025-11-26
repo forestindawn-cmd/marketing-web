@@ -147,10 +147,10 @@ async function loadProgress(userId) {
 // 진행 상황 저장
 async function saveProgress(userId, completedDays) {
     try {
-        await db.collection('progress').doc(userId).update({
+        await db.collection('progress').doc(userId).set({
             completedDays: completedDays,
             lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
-        });
+        }, { merge: true });
         return { success: true };
     } catch (error) {
         console.error('Error saving progress:', error);
@@ -171,10 +171,10 @@ async function toggleDayCompletion(userId, dayIndex) {
             completedDays.push(dayIndex);
         }
         
-        await progressRef.update({
+        await progressRef.set({
             completedDays: completedDays,
             lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
-        });
+        }, { merge: true });
         
         return { success: true, completedDays: completedDays };
     } catch (error) {
