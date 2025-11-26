@@ -180,6 +180,9 @@ function showSignupForm() {
    ======================================== */
 
 async function initializeCurriculum(user) {
+    // 초기 잠금 상태 먼저 적용 (Day 1만 열림)
+    applyProgress();
+    
     // 실시간 진행 상황 리스너 설정
     unsubscribeProgress = subscribeToProgress(user.uid, (days) => {
         completedDays = days;
