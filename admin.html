@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 대시보드 | 마케팅 마스터 커리큘럼</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- 로딩 오버레이 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <!-- 네비게이션 -->
+    <nav class="user-nav">
+        <div class="user-nav-left">
+            <div class="user-avatar" style="background: var(--gold); color: var(--black);">👑</div>
+            <span class="user-name"><strong>관리자</strong> 대시보드</span>
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <a href="index.html" class="btn-logout">← 학습 페이지</a>
+            <button class="btn-logout" onclick="handleLogout()">로그아웃</button>
+        </div>
+    </nav>
+    
+    <div class="admin-container">
+        <!-- 헤더 -->
+        <div class="admin-header">
+            <h1>수강생 <span>현황</span></h1>
+            <div class="badge">REAL-TIME</div>
+        </div>
+        
+        <!-- 통계 카드 -->
+        <div class="admin-stats">
+            <div class="stat-card gold">
+                <div class="stat-value" id="totalUsers">0</div>
+                <div class="stat-label">총 수강생</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgProgress">0%</div>
+                <div class="stat-label">평균 진행률</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalCompleted">0</div>
+                <div class="stat-label">완료된 레슨</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="fullyCompleted">0</div>
+                <div class="stat-label">전체 완료</div>
+            </div>
+        </div>
+        
+        <!-- 수강생 목록 -->
+        <h2 style="font-size: 18px; margin-bottom: 20px; color: var(--charcoal);">📚 수강생별 진행 현황</h2>
+        <div class="users-grid" id="usersGrid">
+            <!-- 동적으로 생성됨 -->
+        </div>
+    </div>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
